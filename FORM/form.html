@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Student Information System</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --success-color: #27ae60;
+            --bg-color: #eef2f3;
+        }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: #3498db;
+            display: flex;
+            justify-content: center;
+            /* padding: 10px 10px; */
+        }
+        .container { 
+            background: #14d4c4; 
+            padding: 30px; 
+            border-radius: 15px; 
+            max-width: 800px; 
+            width: 100%;
+            height:750px;
+        }
+        header {
+            text-align: center;
+            border-bottom: 2px solid #eee;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+        }
+         .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .form-group { margin-bottom: 20px; }
+        .full-width { grid-column: span 2; }
+        label { 
+            display: block; 
+            margin-bottom: 8px; 
+            font-weight: 600; 
+            font-size: 0.9em;
+        }
+        input, select, textarea { 
+            width: 100%; 
+            padding: 12px; 
+            border: 1px solid #ddd; 
+            border-radius: 6px; 
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+        input:focus {
+            outline: none;
+        }
+        .radio-group {
+            display: flex;
+            gap: 15px;
+        }
+        button { 
+            background-color: var(--accent-color); 
+            color: white; 
+            padding: 15px; 
+            border: none; 
+            border-radius: 6px;
+            width: 100%; 
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button:hover { background-color: #2980b9; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h2>Student Enrollment Portal</h2>
+    </header>
+    <form id="registrationForm">
+        <div class="form-grid">
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" name="firstName" placeholder="First Name">
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName" name="lastName" placeholder="Last Name"required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="Email"required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="+91">
+            </div>
+            <div class="form-group">
+                <label for="major">Intended Major</label>
+                <select id="major" name="major" required>
+                    <option value="">Select a program...</option>
+                    <option value="cs">Computer Science</option>
+                    <option value="eng">Engineering</option>
+                    <option value="bus">Business Administration</option>
+                    <option value="art">Fine Arts</option>
+                    <option value="bio">Biology</option>
+                </select>
+            </div>
+             <div class="form-group">
+                <label for="major">Admission Type</label>
+                <select id="admission" name="admission" required>
+                    <option value="">Select admission type...</option>
+                    <option value="cs">Government Quota</option>
+                    <option value="eng">Management Quota</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="password">Create Password</label>
+                <input type="password" id="password" name="password" minlength="8" placeholder="Password"required>
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Password"required>
+            </div>
+            <div class="form-group full-width">
+                <label for="address">Residential Address</label>
+                <textarea id="address" name="address" rows="3" placeholder="Street, Apartment, City, Zip Code"></textarea>
+            </div>
+            <div class="form-group full-width">
+                <label>
+                    <input type="checkbox" id="terms" required style="width: auto; margin-right: 10px;">
+                    I agree to the University Terms of Service and Privacy Policy.
+                </label>
+            </div>
+        </div>
+        <button type="submit">Complete Registration</button>
+    </form>
+</div>
+<script>
+    document.getElementById('registrationForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const pass = document.getElementById('password').value;
+        const confirm = document.getElementById('confirmPassword').value;
+        if(pass !== confirm) {
+            alert("Passwords do not match!");
+            return;
+        }
+        const formData = new FormData(this);
+        const data = Object.fromEntries(formData.entries());
+        console.log('Form Submitted Successfully:', data);
+        alert('Registration Successful!');
+    });
+</script>
+</body>
+</html>
